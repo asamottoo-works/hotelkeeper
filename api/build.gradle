@@ -1,0 +1,69 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "com.github.ben-manes:gradle-versions-plugin:0.28.0"
+	}
+}
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.github.ben-manes.versions"
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+eclipse {
+	project {
+		name = 'api'
+	}
+}
+sourceCompatibility = compatibility
+targetCompatibility = compatibility
+bootJar {
+	launchScript()
+}
+sourceSets {
+	main {
+		resources.srcDirs = ["src/main/java", "src/main/resources"]
+	}
+}
+bootRun {
+	sourceResources sourceSets.main
+	if (project.hasProperty('args')) {
+		args project.args.split('\\s+')
+	}
+}
+dependencies {
+	annotationProcessor "org.projectlombok:lombok:1.18.4"
+	compile('org.projectlombok:lombok:1.18.4')
+	compile('io.springfox:springfox-swagger2:2.9.2')
+	compile('io.springfox:springfox-swagger-ui:2.9.2')
+	implementation("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-groovy-templates:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
+	compile("org.jxls:jxls:2.4.2")
+	compile("org.jxls:jxls-poi:1.0.13")
+	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
+	implementation 'org.flywaydb:flyway-core:6.4.4'
+	implementation project(':database')
+	implementation("ch.qos.logback.contrib:logback-json-classic:0.1.5")
+	implementation("ch.qos.logback.contrib:logback-jackson:0.1.5")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	testImplementation("org.springframework.security:spring-security-test")
+	compile group: 'com.auth0', name: 'java-jwt', version: '3.10.3'
+	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+	testImplementation "org.junit.jupiter:junit-jupiter:5.5.2"
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude(group: 'org.junit.vintage')
+	}
+}
+test {
+	useJUnitPlatform()
+	jvmArgs = ['-Dspring.profiles.active=test']
+}
+repositories {
+	jcenter()
+}

@@ -1,0 +1,19 @@
+plugins {
+    id "org.flywaydb.flyway" version "6.4.4"
+    id "com.github.ben-manes.versions" version "0.28.0"
+}
+apply plugin: 'java'
+flyway {
+    url = "jdbc:postgresql://localhost:5432/hotel_keeper"
+    user = "hotel_keeper"
+    password = "weak-Passw0rd"
+    encoding = "UTF-8"
+    schemas = ["version", "ユーザー"]
+}
+dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+}
+repositories {
+    mavenCentral()
+    jcenter()
+}

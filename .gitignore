@@ -1,0 +1,60 @@
+# ビルド結果 ファイル単体
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# ビルド結果 パッケージファイル
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ログファイル
+*.log
+
+# OSによる生成
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# 編集中ファイル
+*~
+*.swp
+
+# Gradleによる生成
+.gradle
+.gradletasknamecache
+.m2
+!gradle-wrapper.jar
+
+# ビルドツールによる生成
+target/
+build/
+
+# IntelliJ IDEAによる生成
+out
+.idea
+*.ipr
+*.iws
+*.iml
+atlassian-ide-plugin.xml
+
+# Eclipseによる生成
+.classpath
+.project
+.settings
+.metadata
+bin/
+
+# NetBeansによる生成
+.nbattrs
+/.nb-gradle/profiles/private/
+.nb-gradle-properties

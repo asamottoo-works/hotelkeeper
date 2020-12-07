@@ -1,0 +1,5 @@
+rootProject.name = 'hotel-keeper'
+include 'api'
+include 'client'
+include 'database'
+
