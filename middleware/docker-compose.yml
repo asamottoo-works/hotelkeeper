@@ -1,0 +1,28 @@
+version: "3"
+services:
+  hotelkeeper-db:
+    image: postgres:10.5
+    container_name: hotelkeeper-db
+    ports:
+      - 25432:5432
+    restart: always
+    environment:
+      POSTGRES_DB: hotelkeeper
+      POSTGRES_USER: hotelkeeper_user
+      POSTGRES_PASSWORD: weak-passw0rd
+    volumes:
+      - ./scripts/init.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./postgresql/data:/var/lib/postgresql/data
+
+  hotelkeeper-pgadmin4:
+    image: dpage/pgadmin4:3.3
+    container_name: hotelkeeper-pgadmin4
+    ports:
+      - 20080:80
+    volumes:
+      - ./pgadmin/storage:/var/lib/pgadmin/storage
+    environment:
+      PGADMIN_DEFAULT_EMAIL: hotelkeeper_user
+      PGADMIN_DEFAULT_PASSWORD: weak-passw0rd
+    hostname: pgadmin4
+    restart: always

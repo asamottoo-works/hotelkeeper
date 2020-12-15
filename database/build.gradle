@@ -4,11 +4,11 @@ plugins {
 }
 apply plugin: 'java'
 flyway {
-    url = "jdbc:postgresql://localhost:5432/hotel_keeper"
-    user = "hotel_keeper"
-    password = "weak-Passw0rd"
+    url = "jdbc:postgresql://localhost:25432/hotelkeeper"
+    user = "hotelkeeper_user"
+    password = "weak-passw0rd"
     encoding = "UTF-8"
-    schemas = ["version", "ユーザー"]
+    schemas = ["version", "user"]
 }
 dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'

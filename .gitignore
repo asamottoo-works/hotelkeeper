@@ -58,3 +58,7 @@ bin/
 .nbattrs
 /.nb-gradle/profiles/private/
 .nb-gradle-properties
+
+# docker
+middleware/postgresql
+middleware/pgadmin
